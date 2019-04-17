@@ -20,6 +20,8 @@ body {
 .home-sidebar {
   grid-area: sidebar;
 }
+
+
 .home-primary {
   grid-area: primary;
 }
@@ -30,6 +32,7 @@ body {
 .home-featuring img {
   align-self: center;
   justify-self: center;
+  
 }
 
 /*Sidebar*/
@@ -37,8 +40,9 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr 1fr;
-  background: #171929;
-  color: white;
+  /* background: #FFBF00; */
+  background: linear-gradient(to right, #B9CF45, #F5DA81);
+  color: black;
   padding: 1em;
   box-sizing: border-box;
   height: 100vh;
@@ -54,6 +58,7 @@ body {
 }
 .logo-image img {
   max-width: 100%;
+  
 }
 
 .sidebarPlaylist {
@@ -67,7 +72,7 @@ body {
 }
 
 .myPlaylist-item a {
-  color: white;
+  color: black;
   text-decoration: none;
   font-size: .8em;
   display: block;
@@ -89,7 +94,7 @@ body {
 }
 
 .playlistFriends-item {
-  color: white;
+  color: black;
 }
 
 .playlistFriends-item {
@@ -100,7 +105,7 @@ body {
 .playlistFriends-item a {
   display: inline-flex;
   align-items: center;
-  color: white;
+  color: black;
   text-decoration: none;
 }
 .playlistFriends-item:hover a {
@@ -219,7 +224,7 @@ body {
 
 
 .featuring {
-  background: linear-gradient(to right, #ff0000, #ff458b);
+  background: linear-gradient(to right, #B9CF45, #F5DA81);
   display: flex;
   height: 100%;
   align-items: center;
