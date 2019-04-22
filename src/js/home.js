@@ -62,3 +62,31 @@ Promise.race([
 .catch(function(message){
     console.log(message)
 })
+
+
+//tutorial de ajax en jquery y javascript
+//haciendo uso de ajax
+/*
+$.ajax('https://randomuser.me/api/xxx',{
+    method: 'GET',
+    success: function(data){
+        console.log(data)
+    },
+    error: function(error){
+        console.log(error)
+    }
+})
+*/
+//ahora con vanilla js
+
+fetch('https://randomuser.me/api/xxx')
+    .then(function(response){
+        console.log(response)
+        return response.json()
+    })
+    .then(function(user){
+        console.log('user', user.results[0].name.first)
+    })
+    .catch(function(){
+        console.log('algo fallo')
+    })
