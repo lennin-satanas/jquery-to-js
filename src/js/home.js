@@ -1,6 +1,8 @@
 
-console.log('hola mundo 1');
+//console.log('hola mundo 1');
 //creando una promesa
+
+/*
 const getUserAll = new Promise(function(todoBien, todoMal){
 
     //simulando la espera con un setTimeout
@@ -22,7 +24,7 @@ const getUser = new Promise(function(todoBien, todoMal){
     },3000)
 
 })
-
+*/
 //consumiendo una promesa
 /*
 getUser
@@ -52,6 +54,7 @@ Promise.all([
 
 
 //carrera de promesa
+/*
 Promise.race([
     getUser,
     getUserAll,
@@ -63,7 +66,7 @@ Promise.race([
     console.log(message)
 })
 
-
+*/
 //tutorial de ajax en jquery y javascript
 //haciendo uso de ajax
 /*
@@ -78,7 +81,7 @@ $.ajax('https://randomuser.me/api/xxx',{
 })
 */
 //ahora con vanilla js
-
+/*
 fetch('https://randomuser.me/api/xxx')
     .then(function(response){
         console.log(response)
@@ -89,4 +92,67 @@ fetch('https://randomuser.me/api/xxx')
     })
     .catch(function(){
         console.log('algo fallo')
-    })
+    });
+
+*/
+//funciones asincronas
+
+//declarando una funcion asincrona
+
+/*
+async function cargar(){
+    //esperar las peticiones de api  await
+}
+//llamando al a function
+cargar()
+
+//o la puedo envolver para que se auto ejecute
+*/
+/*
+(async function load(){
+    //await
+    const response = await fetch('https://yts.am/api/v2/list_movies.json?genre=action')
+    //pauso la aplicación hasta que se ejecute 
+    const data = await response.json()
+    //no se ejecuta hasta que se ejecuten las dos promesas anteriores
+    console.log(data)
+})()
+*/
+// ejemplo de utilización de aync await y promesas
+/*
+(async function load(){
+    //action
+    //terror
+    //animation
+    async function getData(url){
+        const response = await fetch(url);
+        const data = await response.json();
+        return data;
+    }
+    const actionList = await getData('https://yts.am/api/v2/list_movies.json?genre=action');
+    let terrorList;
+    getData('https://yts.am/api/v2/list_movies.json?genre=terro')
+        .then(function(data){
+            console.log('terrorList', data);
+            terrorList = data;
+        })
+    console.log('actionList', actionList);
+})()
+*/
+
+(async function load(){
+    //action
+    //terror
+    //animation
+    async function getData(url){
+        const response = await fetch(url);
+        const data = await response.json();
+        return data;
+    }
+    const actionList = await getData('https://yts.am/api/v2/list_movies.json?genre=action');
+    const terrorList = await getData('https://yts.am/api/v2/list_movies.json?genre=terror')
+    const animationList = await getData('https://yts.am/api/v2/list_movies.json?genre=animation')
+    console.log('actionList', actionList);
+    console.log('terrorList', terrorList);
+    console.log('animationList', animationList)
+})()
