@@ -1,4 +1,3 @@
-
 //console.log('hola mundo 1');
 //creando una promesa
 
@@ -51,7 +50,6 @@ Promise.all([
 */
 //cuando falla solo envia un mensaje
 //cuando es un exito retorna todos los mensajes
-
 
 //carrera de promesa
 /*
@@ -140,42 +138,75 @@ cargar()
 })()
 */
 
-(async function load(){
-    //action
-    //terror
-    //animation
-    async function getData(url){
-        const response = await fetch(url);
-        const data = await response.json();
-        return data;
-    }
-    const actionList = await getData('https://yts.am/api/v2/list_movies.json?genre=action');
-    const terrorList = await getData('https://yts.am/api/v2/list_movies.json?genre=terror')
-    const animationList = await getData('https://yts.am/api/v2/list_movies.json?genre=animation')
-    console.log('actionList', actionList);
-    console.log('terrorList', terrorList);
-    console.log('animationList', animationList)
+(async function load() {
+  //action
+  //terror
+  //animation
+  async function getData(url) {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  }
 
-    //definiendo las variables para llamar a los selectores
-    const $actionContainer = document.querySelector('#action');
-    const $dramaContainer = document.getElementById('#drama');
-    const $animationContainer = document.getElementById('#animation');
-    const $featuringContainer = document.getElementById('#featuring');
-    const $form = document.getElementById('#form');
-    const $ home = document.getElementById('#home');
+  //Listas
+  const actionList = await getData(
+    "https://yts.am/api/v2/list_movies.json?genre=action"
+  );
+  const terrorList = await getData(
+    "https://yts.am/api/v2/list_movies.json?genre=terror"
+  );
+  const animationList = await getData(
+    "https://yts.am/api/v2/list_movies.json?genre=animation"
+  );
+  console.log("actionList", actionList);
+  console.log("terrorList", terrorList);
+  console.log("animationList", animationList);
+   // debugger
+    function videoItemTemplate(movie) {
+    return (
+        `<div class="primaryPlaylistItem">
+            <div class="primaryPlaylistItem-image">
+            <img src="${movie.medium_cover_image}">
+            </div>
+            <h4 class="primaryPlaylistItem-title">
+                ${movie.title}
+            </h4>
+        </div>`
+    )
+  }
+  //console.log(videoItemTemplate('src/images/covers/bitcoin.jpg', 'Bitcoin'));
+  actionList.data.movies.forEach( (movie) => {
+    //debugger
+    const HTMLString =  videoItemTemplate(movie);
+    console.log(HTMLString);
+    
+      
+      //console.log(videoItemTemplate('src/images/covers/bitcoin.jpg', 'Bitcoin'));
+  })
 
 
-    const $modal = document.getElementById('#modal');
-    const $overlay = document.getElementById('#overlay');
-    const $hideModal = document.getElementById('hide-modal');
-
-    //document.querySelector('#modal img')
-    const modalImage = $modal.querySelector('img');
-    const modalTitle = $modal.querySelector('h1');
-    const modalDescription = $modal.querySelector('p');
+  
 
 
 
 
 
-})()
+  //definiendo las variables para llamar a los selectores
+  const $actionContainer = document.querySelector("#action");
+  const $dramaContainer = document.getElementById("#drama");
+  const $animationContainer = document.getElementById("#animation");
+  const $featuringContainer = document.getElementById("#featuring");
+  const $form = document.getElementById("#form");
+  const $home = document.getElementById("#home");
+
+  const $modal = document.getElementById("modal");
+  const $overlay = document.getElementById("overlay");
+  const $hideModal = document.getElementById("hide-modal");
+
+  //document.querySelector('#modal img')
+  const modalImage = $modal.querySelector("img");
+  const modalTitle = $modal.querySelector("h1");
+  const modalDescription = $modal.querySelector("p");
+
+  
+})();

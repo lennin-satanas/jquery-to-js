@@ -111,3 +111,44 @@ document.querySelector("div .home #modal")
 
 //Devuelve todos los elementos que coincidan con el query de búsqueda.
 document.querySelectorAll("div .home #modal")
+
+Creación de templates
+Vamos a crear una plantilla con nuestro elemento base, dicha plantilla será recibirá valores dinámicos.
+
+Dentro de jQuery, la creación de un template seria con un texto base y si nuestro texto cuenta con distintas líneas más aparte tuviera valores dinámicos se vería de la siguiente forma:
+
+‘<div class=”container”>’ +
+    ‘<p id=’+ id +’>Hola Mundo<p>’ +
+‘<div>’
+Desde ECMAScript 6 contamos con una nueva característica llamada template literals que se representan con las comillas invertidas ``, el ejemplo anterior pasaría a verse de esta forma:
+
+`<div class=”container”>
+    <p id=${id}>Hola Mundo<p>
+<div>`
+
+//en jquery deberia ser así:
+
+    '<div class="primaryPlaylistItem">' +
+    '<div class="primaryPlaylistItem-image">' +
+    '<img src="src/images/covers/midnight.jpg">' +
+    '</div>' +
+    '<h4 class="primaryPlaylistItem-title">' +
+    'Titulo de la peli' +
+    ' </h4>' +
+    '</div>'
+
+
+    function videoItemTemplate(src, title) {
+    return (
+    `<div class="primaryPlaylistItem">
+        <div class="primaryPlaylistItem-image">
+         <img src="${src}">
+        </div>
+        <h4 class="primaryPlaylistItem-title">
+            ${title}
+        </h4>
+    </div>`)
+  }
+  console.log(videoItemTemplate('src/images/covers/bitcoin.jpg', 'Bitcoin'));
+
+  
