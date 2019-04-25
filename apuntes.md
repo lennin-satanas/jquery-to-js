@@ -151,4 +151,21 @@ Desde ECMAScript 6 contamos con una nueva característica llamada template liter
   }
   console.log(videoItemTemplate('src/images/covers/bitcoin.jpg', 'Bitcoin'));
 
-  
+Usando Templates
+La plantilla no puede puede ser llamada de frente puesto que en el html se mostraría como texto. Primero se hace una transformación de la plantilla para recién agregarla al contenedor que se desee.
+
+function titleTemplate(title) {
+  return (
+    `<h1>${title}</h1>`
+  )
+}
+
+//se trae la plantilla y se guarda en una variable.
+const HTMLString = titleTemplate(movie);
+//se crea un documento html vacío
+const html = document.implementation.createHTMLDocument();
+//se agrega la plantilla al innerHTML del documento html 
+//esto hace que la plantilla en texto se convierta a elementos DOM
+html.body.innerHTML = HTMLString;
+//se agrega el primer hijo (que es donde se encuentra la plantilla) al contenedor donde se quiere agregar la plantilla
+$actionContainer.append(html.body.children[0]);
