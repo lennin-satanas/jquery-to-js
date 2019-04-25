@@ -78,3 +78,36 @@ Vamos a realizar peticiones con fetch a la API de yts para pedirle películas se
 
 http://www.enrique7mc.com/2016/05/lista-apis-publicas/
 
+Selectores
+Un selector nos sirve para poder manipular un objeto del DOM, puedes buscar dicho objeto ya sea por su id, clase, atributo, etc.
+
+Para PlatziVideo necesitamos un selector de un contenedor para ponerle dentro la lista de películas.
+
+En jQuery hacemos un selector de la siguiente forma:
+
+const $home = $(‘ .home ’);
+
+Por convención una variable que este represente un objeto del DOM lleva el signo $, esto es para tener claro que estamos manipulando un objeto del DOM y no algún tipo de información o dato.
+
+Dentro de JavaScript existen distintas funciones para hacer selectores, entre ellas se encuentra:
+
+• getElementById: recibe como parámetro el id del objeto del DOM que estás buscando. Te regresa un solo objeto.
+• getElementByTagName: recibe como parámetro el tag que estas buscando y te regresa una colección html de los elementos que tengan ese tag.
+• getElementByClassName: recibe como parámetro la clase y te regresa una colección html de los elementos que tengan esa clase.
+• querySelector: va a buscar el primer elemento que coincida con el selector que le pases como parámetro.
+• querySelectorAll: va a buscar todos los elementos que coincidan con el selector que le pases como parámetro.
+
+//Retorna un elemento con el id home
+document.getElementById("home")
+
+//Retorna una lista de elementos con la clase home
+document.getElementsByClassname("home")
+
+//Retorna una lista de elementos con el tag div
+document.getElementsByTagName("div")
+
+//Devuelve el primer elemento que coincida con el query de búsqueda.
+document.querySelector("div .home #modal")
+
+//Devuelve todos los elementos que coincidan con el query de búsqueda.
+document.querySelectorAll("div .home #modal")

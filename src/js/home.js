@@ -155,4 +155,27 @@ cargar()
     console.log('actionList', actionList);
     console.log('terrorList', terrorList);
     console.log('animationList', animationList)
+
+    //definiendo las variables para llamar a los selectores
+    const $actionContainer = document.querySelector('#action');
+    const $dramaContainer = document.getElementById('#drama');
+    const $animationContainer = document.getElementById('#animation');
+    const $featuringContainer = document.getElementById('#featuring');
+    const $form = document.getElementById('#form');
+    const $ home = document.getElementById('#home');
+
+
+    const $modal = document.getElementById('#modal');
+    const $overlay = document.getElementById('#overlay');
+    const $hideModal = document.getElementById('hide-modal');
+
+    //document.querySelector('#modal img')
+    const modalImage = $modal.querySelector('img');
+    const modalTitle = $modal.querySelector('h1');
+    const modalDescription = $modal.querySelector('p');
+
+
+
+
+
 })()
