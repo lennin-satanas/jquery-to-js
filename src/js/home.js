@@ -152,17 +152,17 @@ cargar()
   const actionList = await getData(
     "https://yts.am/api/v2/list_movies.json?genre=action"
   );
-  const terrorList = await getData(
-    "https://yts.am/api/v2/list_movies.json?genre=terror"
+  const dramaList = await getData(
+    "https://yts.am/api/v2/list_movies.json?genre=drama"
   );
   const animationList = await getData(
     "https://yts.am/api/v2/list_movies.json?genre=animation"
   );
   console.log("actionList", actionList);
-  console.log("terrorList", terrorList);
+  console.log("dramaList", dramaList);
   console.log("animationList", animationList);
    // debugger
-    function videoItemTemplate(movie) {
+  function videoItemTemplate(movie) {
     return (
         `<div class="primaryPlaylistItem">
             <div class="primaryPlaylistItem-image">
@@ -175,30 +175,51 @@ cargar()
     )
   }
   //console.log(videoItemTemplate('src/images/covers/bitcoin.jpg', 'Bitcoin'));
-  const $actionContainer = document.querySelector("#action");
-  actionList.data.movies.forEach( (movie) => {
+
+
+    //definiendo las variables para llamar a los selectores
+    const $actionContainer = document.querySelector("#action");
+    actionList.data.movies.forEach( (movie) => {
     //debugger
-    const HTMLString =  videoItemTemplate(movie);
+    //se trae la plantilla y se guarda en una variable.
+        const HTMLString =  videoItemTemplate(movie);
+        //se crea un documento html vacío
+        const html = document.implementation.createHTMLDocument();
+        //se agrega la plantilla al innerHTML del documento html 
+        //esto hace que la plantilla en texto se convierta a elementos DOM
+        html.body.innerHTML = HTMLString;
+        // debugger
+        //se agrega el primer hijo (que es donde se encuentra la plantilla) al contenedor donde se quiere agregar la plantilla
+        $actionContainer.append(html.body.children[0]);
+    //console.log(HTMLString);
+    //console.log(videoItemTemplate('src/images/covers/bitcoin.jpg', 'Bitcoin'));
+    })
 
-    const html = document.implementation.createHTMLDocument();
-    html.body.innerHTML = HTMLString;
-    // debugger
-    $actionContainer.append(html.body.children[0]);
-    console.log(HTMLString);
-    
-      
-      //console.log(videoItemTemplate('src/images/covers/bitcoin.jpg', 'Bitcoin'));
-  })
+    const $dramaContainer = document.getElementById("drama");
+    dramaList.data.movies.forEach( (movie) => {
+        const HTMLString = videoItemTemplate(movie);
+        const html = document.implementation.createHTMLDocument();
+        html.body.innerHTML = HTMLString;
+        $dramaContainer.append(html.body.children[0]);
+    })
 
+    const $animationContainer = document.getElementById("animation");
+    animationList.data.movies.forEach( (movie) => {
+        const HTMLString = videoItemTemplate(movie);
+        const html = document.implementation.createHTMLDocument();
+        html.body.innerHTML = HTMLString;
+        $animationContainer.append(html.body.children[0]);
+
+    })
 
 
   //definiendo las variables para llamar a los selectores
   
-  const $dramaContainer = document.getElementById("#drama");
-  const $animationContainer = document.getElementById("#animation");
-  const $featuringContainer = document.getElementById("#featuring");
-  const $form = document.getElementById("#form");
-  const $home = document.getElementById("#home");
+  
+  
+  const $featuringContainer = document.getElementById("featuring");
+  const $form = document.getElementById("form");
+  const $home = document.getElementById("home");
 
   const $modal = document.getElementById("modal");
   const $overlay = document.getElementById("overlay");
