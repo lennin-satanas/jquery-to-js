@@ -158,6 +158,8 @@ cargar()
   const animationList = await getData(
     "https://yts.am/api/v2/list_movies.json?genre=animation"
   );
+
+
   console.log("actionList", actionList);
   console.log("dramaList", dramaList);
   console.log("animationList", animationList);
@@ -177,7 +179,7 @@ cargar()
   //console.log(videoItemTemplate('src/images/covers/bitcoin.jpg', 'Bitcoin'));
 
 
-    //definiendo las variables para llamar a los selectores
+/*    //definiendo las variables para llamar a los selectores
     const $actionContainer = document.querySelector("#action");
     actionList.data.movies.forEach( (movie) => {
     //debugger
@@ -211,11 +213,37 @@ cargar()
         $animationContainer.append(html.body.children[0]);
 
     })
+*/
+
+    //Creando funciones
+
+    const $actionContainer = document.querySelector("#action");
+    const $dramaContainer = document.getElementById("drama");
+    const $animationContainer = document.getElementById("animation");
+    //creamos una función que nos cree el HTML
+
+
+    function createTemplate(HTMLString){
+        const html = document.implementation.createHTMLDocument();        
+        html.body.innerHTML = HTMLString;
+        return html.body.children[0];
+    }    
+
+    function renderMovieList(list, $container){
+        $container.children[0].remove();
+        list.forEach( (movie) => {
+           const HTMLString =  videoItemTemplate(movie);
+           const movieElement = createTemplate(HTMLString);
+           $container.append(movieElement);
+        })
+    }
+
+    renderMovieList(actionList.data.movies, $actionContainer);
+    renderMovieList(dramaList.data.movies, $dramaContainer);
+    renderMovieList(animationList.data.movies, $animationContainer);
 
 
   //definiendo las variables para llamar a los selectores
-  
-  
   
   const $featuringContainer = document.getElementById("featuring");
   const $form = document.getElementById("form");
