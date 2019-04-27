@@ -148,6 +148,15 @@ cargar()
     return data;
   }
 
+  //formulario de busqueda
+  const $form = document.getElementById("form");
+  $form.addEventListener('submit', (event) => {
+    //preventDefault evita que cada vez que se haga una busqueda no recargue la pagina  
+    event.preventDefault();
+  })
+
+
+
   //Listas
   const actionList = await getData(
     "https://yts.am/api/v2/list_movies.json?genre=action"
@@ -228,6 +237,13 @@ cargar()
         html.body.innerHTML = HTMLString;
         return html.body.children[0];
     }    
+    //evento click sobre la imagen
+    function addEventClick($element){
+        $element.addEventListener('click', (event) => {
+        //$element.addEventListener('click', (event) => {
+          // debugger
+        })
+    }
 
     function renderMovieList(list, $container){
         $container.children[0].remove();
@@ -235,6 +251,8 @@ cargar()
            const HTMLString =  videoItemTemplate(movie);
            const movieElement = createTemplate(HTMLString);
            $container.append(movieElement);
+           //llamamos la función que captura el click de sobre la imagen
+           addEventClick(movieElement);
         })
     }
 
@@ -246,7 +264,7 @@ cargar()
   //definiendo las variables para llamar a los selectores
   
   const $featuringContainer = document.getElementById("featuring");
-  const $form = document.getElementById("form");
+  
   const $home = document.getElementById("home");
 
   const $modal = document.getElementById("modal");

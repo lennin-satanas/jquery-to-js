@@ -169,3 +169,7 @@ const html = document.implementation.createHTMLDocument();
 html.body.innerHTML = HTMLString;
 //se agrega el primer hijo (que es donde se encuentra la plantilla) al contenedor donde se quiere agregar la plantilla
 $actionContainer.append(html.body.children[0]);
+
+Eventos
+
+https://developer.mozilla.org/en-US/docs/Web/Events
