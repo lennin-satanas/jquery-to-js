@@ -184,5 +184,8 @@ $0.Classlist.remove //remueve una clase
 $0.Classlist.toogl //si la clase existe la remueve y si ni no existe la agrega // true false
 
 
+funciones para llamar algún valor
 
+setAttributes : asignar un valor
+getAtribute : llamar a un valor
 

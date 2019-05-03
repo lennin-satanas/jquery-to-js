@@ -149,15 +149,32 @@ cargar()
   }
 
   //formulario de busqueda
-  const $form = document.getElementById("form");
-  const $home = document.getElementById("home");
+  const $form = document.getElementById('form');
+  const $home = document.getElementById('home');
+  const $featuringContainer = document.getElementById('featuring');
+
+  //funcion para crear los atributos de un html creado con js
+  function setAttributes($element, attributes) {
+    for(const attribute in attributes) {
+        $element.setAttribute(attribute, attributes[attribute]);
+    }
+  }
   $form.addEventListener('submit', (event) => {
     //preventDefault evita que cada vez que se haga una busqueda no recargue la pagina  
     //quitar la acción por defecto
     event.preventDefault();
     //agrega la clase search-active después de hacer una busqueda
     $home.classList.add('search-active');
-    
+
+    //creando el louder
+    const $loader = document.createElement('img');
+    setAttributes($loader, {
+        src: 'src/images/loader.gif',
+        height: 50,
+        width: 50,
+    })
+    $featuringContainer.append($loader);
+       
   })
 
 
@@ -267,7 +284,7 @@ cargar()
 
   //definiendo las variables para llamar a los selectores
   
-  const $featuringContainer = document.getElementById("featuring");
+ 
   
   
 
