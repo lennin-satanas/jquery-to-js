@@ -156,39 +156,62 @@ cargar()
   //funcion para crear los atributos de un html creado con js
   function setAttributes($element, attributes) {
     for(const attribute in attributes) {
+        //setAttribute permite asignar el valor
         $element.setAttribute(attribute, attributes[attribute]);
     }
   }
-  $form.addEventListener('submit', (event) => {
+  //BASE_API esta en mayusculas porque es una constante nunca va a variar
+  const BASE_API = 'https://yts.am/api/v2/'
+
+  function featuringTemplate(peli) {
+    return(  
+    `
+      <div class="featuring">
+        <div class="featuring-image">
+          <img src="${peli.medium_cover_image}" width="70" height="100" alt="">
+        </div>
+        <div class="featuring-content">
+          <p class="featuring-title">Pelicula encontrada</p>
+          <p class="featuring-album">${peli.title}</p>
+        </div>
+      `
+    )
+  }
+
+  $form.addEventListener('submit',async (event) => {
     //preventDefault evita que cada vez que se haga una busqueda no recargue la pagina  
     //quitar la acción por defecto
     event.preventDefault();
     //agrega la clase search-active después de hacer una busqueda
     $home.classList.add('search-active');
 
-    //creando el louder
+    //creando el elemento HTML con document.createElement : louder
     const $loader = document.createElement('img');
+    //llamando a la función para a gregar los atributos
     setAttributes($loader, {
         src: 'src/images/loader.gif',
         height: 50,
         width: 50,
     })
     $featuringContainer.append($loader);
-       
+
+    //obtener el texto de la pelicula que estoy buscando en el formulario para luego hacer una petición
+    const data = new FormData($form);
+    //funcion asincrona para traer nuevos datos
+    //limit limit de busqueda
+    const peli = await getData(`${BASE_API}list_movies.json?limit=1&query_term={${data.get('name')}`);
+    const HTMLString = featuringTemplate(peli.data.movies[0]);
+    $featuringContainer.innerHTML = HTMLString;
+
+               
   })
 
 
 
   //Listas
-  const actionList = await getData(
-    "https://yts.am/api/v2/list_movies.json?genre=action"
-  );
-  const dramaList = await getData(
-    "https://yts.am/api/v2/list_movies.json?genre=drama"
-  );
-  const animationList = await getData(
-    "https://yts.am/api/v2/list_movies.json?genre=animation"
-  );
+  const actionList = await getData(`${BASE_API}list_movies.json?genre=action`);
+  const dramaList = await getData(`${BASE_API}list_movies.json?genre=drama` );
+  const animationList = await getData(`${BASE_API}list_movies.json?genre=animation`);
 
 
   console.log("actionList", actionList);

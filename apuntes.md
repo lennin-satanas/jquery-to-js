@@ -186,6 +186,47 @@ $0.Classlist.toogl //si la clase existe la remueve y si ni no existe la agrega /
 
 funciones para llamar algún valor
 
-setAttributes : asignar un valor
+setAttribute : asignar un atributo
+loader.setAtribute('src', 'img/xxx/xxxx')
+
 getAtribute : llamar a un valor
+
+para agregar mas atributos se hace una función
+
+//funcion para crear los atributos de un html creado con js
+  
+  function setAttributes($element, attributes) {
+    for(const attribute in attributes) {
+        $element.setAttribute(attribute, attributes[attribute]);
+    }
+  }
+
+
+//
+Formularios
+Para obtener los datos de un formulario con Vanilla JS usamos el constructor FormData() que recibe como parámetro el formulario HTML al que queramos acceder:
+
+const formData = new FormData($form)
+A este nuevo objeto podemos setearle datos nuevos y también pedirle:
+
+// agregar
+	formData.set('serie', 'Mr. Robot')
+
+// pedir
+	formData.get('serie')
+	// "Mr. Robot"
+Para obtener el input del formulario al que quiero acceder utilizo el valor del atributo ‘name’ previamente seteado en el tag html.
+
+
+	<form action="" class="search" id="form">
+            	<input type="text" name="search-this" placeholder="Buscar un artista o tema favorito"/>
+  </form>
+
+	<script>
+	    formData.get('search-this')
+	</script>
+
+
+
+
 
