@@ -173,3 +173,16 @@ $actionContainer.append(html.body.children[0]);
 Eventos
 
 https://developer.mozilla.org/en-US/docs/Web/Events
+
+//
+Clases y estilos CSS
+
+desde las herramientas de desarrollador, marco en el html la sección y puedo acceder a ella con $0.
+
+$0.Classlist.add   //agrega una clase
+$0.Classlist.remove //remueve una clase
+$0.Classlist.toogl //si la clase existe la remueve y si ni no existe la agrega // true false
+
+
+
+

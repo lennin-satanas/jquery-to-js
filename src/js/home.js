@@ -150,9 +150,14 @@ cargar()
 
   //formulario de busqueda
   const $form = document.getElementById("form");
+  const $home = document.getElementById("home");
   $form.addEventListener('submit', (event) => {
     //preventDefault evita que cada vez que se haga una busqueda no recargue la pagina  
+    //quitar la acción por defecto
     event.preventDefault();
+    //agrega la clase search-active después de hacer una busqueda
+    $home.classList.add('search-active');
+    
   })
 
 
@@ -240,8 +245,7 @@ cargar()
     //evento click sobre la imagen
     function addEventClick($element){
         $element.addEventListener('click', (event) => {
-        //$element.addEventListener('click', (event) => {
-          // debugger
+            showModal()
         })
     }
 
@@ -265,7 +269,7 @@ cargar()
   
   const $featuringContainer = document.getElementById("featuring");
   
-  const $home = document.getElementById("home");
+  
 
   const $modal = document.getElementById("modal");
   const $overlay = document.getElementById("overlay");
@@ -275,6 +279,21 @@ cargar()
   const modalImage = $modal.querySelector("img");
   const modalTitle = $modal.querySelector("h1");
   const modalDescription = $modal.querySelector("p");
+
+  function showModal() {
+      //agregar una clase
+      $overlay.classList.add('active');
+      //agregando un estilo 
+      $modal.style.animation = 'modalIn .8s forwards';
+  }
+
+  $hideModal.addEventListener('click', hideModal);
+
+  function hideModal() {
+      $overlay.classList.remove('active');
+      $modal.style.animation = 'modalOut .8s forwards';
+  }
+
 
   
 })();
