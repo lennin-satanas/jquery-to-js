@@ -227,6 +227,19 @@ Para obtener el input del formulario al que quiero acceder utilizo el valor del 
 	</script>
 
 
+Desestructuración de objetos
+Destructuring assignment permite entrar a un objeto o lista y poder sacar un dato para asignarlo a otra variable.
 
+//el fetch devuelve una promesa con la siguiente estructura: promesa.data.movies
+//con el destructuring assignmen estamos creando una variable que se llama pelis y solo contiene la información de movies.
+const { 
+  data: {
+    movies: pelis
+  }
+} = await fetch(`api_url`); 
+
+//Lo anterior sería igual a esto:
+const response = await fetch(`api_url`);
+const pelis = response.data.movies;
 
 

@@ -162,7 +162,7 @@ cargar()
   }
   //BASE_API esta en mayusculas porque es una constante nunca va a variar
   const BASE_API = 'https://yts.am/api/v2/'
-
+  //creando un template
   function featuringTemplate(peli) {
     return(  
     `
@@ -198,17 +198,23 @@ cargar()
     //obtener el texto de la pelicula que estoy buscando en el formulario para luego hacer una petición
     const data = new FormData($form);
     //funcion asincrona para traer nuevos datos
-    //limit limit de busqueda
-    const peli = await getData(`${BASE_API}list_movies.json?limit=1&query_term={${data.get('name')}`);
-    const HTMLString = featuringTemplate(peli.data.movies[0]);
+    //limit limit de busqueda con ? se enlazan condiciones 
+    //asiganción de una variable por destructuración
+    const {
+        data: {
+            movies: pelis
+        }
+    } = await getData(`${BASE_API}list_movies.json?limit=1&query_term={${data.get('name')}`);
+    const HTMLString = featuringTemplate(pelis);
+    //remplazar por nuevo html
     $featuringContainer.innerHTML = HTMLString;
 
                
   })
 
-
-
   //Listas
+  //const actionList = await getData('https://yts.am/api/v2/list_movies.json?genre=action');
+  //la modificamos con ${BASE_API}
   const actionList = await getData(`${BASE_API}list_movies.json?genre=action`);
   const dramaList = await getData(`${BASE_API}list_movies.json?genre=drama` );
   const animationList = await getData(`${BASE_API}list_movies.json?genre=animation`);
