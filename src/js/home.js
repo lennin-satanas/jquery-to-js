@@ -215,9 +215,11 @@ cargar()
   //Listas
   //const actionList = await getData('https://yts.am/api/v2/list_movies.json?genre=action');
   //la modificamos con ${BASE_API}
-  const actionList = await getData(`${BASE_API}list_movies.json?genre=action`);
-  const dramaList = await getData(`${BASE_API}list_movies.json?genre=drama` );
-  const animationList = await getData(`${BASE_API}list_movies.json?genre=animation`);
+  //const actionList = await getData(`${BASE_API}list_movies.json?genre=action`);
+  //destructurando
+  const { data: {movies: actionList} } = await getData(`${BASE_API}list_movies.json?genre=action`);
+  const { data: {movies: dramaList} } = await getData(`${BASE_API}list_movies.json?genre=drama` );
+  const { data: {movies: animationList} } = await getData(`${BASE_API}list_movies.json?genre=animation`);
 
 
   console.log("actionList", actionList);
@@ -307,9 +309,9 @@ cargar()
         })
     }
 
-    renderMovieList(actionList.data.movies, $actionContainer, 'action');
-    renderMovieList(dramaList.data.movies, $dramaContainer, 'drama');
-    renderMovieList(animationList.data.movies, $animationContainer), 'animation';
+    renderMovieList(actionList, $actionContainer, 'action');
+    renderMovieList(dramaList, $dramaContainer, 'drama');
+    renderMovieList(animationList, $animationContainer), 'animation';
 
 
   //definiendo las variables para llamar a los selectores
@@ -323,9 +325,29 @@ cargar()
   const $hideModal = document.getElementById("hide-modal");
 
   //document.querySelector('#modal img')
-  const modalImage = $modal.querySelector("img");
-  const modalTitle = $modal.querySelector("h1");
-  const modalDescription = $modal.querySelector("p");
+  const $modalImage = $modal.querySelector("img");
+  const $modalTitle = $modal.querySelector("h1");
+  const $modalDescription = $modal.querySelector("p");
+
+  function findById(list, id) {
+    return list.find(movie => movie.id === parseInt(id, 10))
+  }
+ 
+  function findMovie(id, category) {
+      //otra forma de mostrar un arrow function
+   // actionList.find(movie => movie.id === parseInt(id, 10))
+   switch(category) {
+       case 'action' : {
+        return findById(actionList, id)
+       }
+       case 'drama' : {
+        return findById(dramaList, id)
+       }
+       default : {
+        return findById(animationList, id)
+       }
+   }
+  }
 
    //funcion para mostrar el modal y su información
    //la funcion recibe el elemento html
@@ -337,7 +359,14 @@ cargar()
       //recibo el dataser id
       const id = $element.dataset.id;
       const category = $element.dataset.category;
+      //funcion para buscar los elementos segun el id y la categoria
+      const data = findMovie(id, category)
+      debugger
       
+      $modalTitle.textContent =  data.title;
+      $modalImage.setAttribute('src', data.medium_cover_image);
+      $modalDescription.textContent = data.description_full;
+
 
   }
 
