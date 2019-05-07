@@ -224,9 +224,9 @@ cargar()
   console.log("dramaList", dramaList);
   console.log("animationList", animationList);
    // debugger
-  function videoItemTemplate(movie) {
+  function videoItemTemplate(movie, category) {
     return (
-        `<div class="primaryPlaylistItem">
+        `<div class="primaryPlaylistItem" data-id="${movie.id}" data-category="${category}">
             <div class="primaryPlaylistItem-image">
             <img src="${movie.medium_cover_image}">
             </div>
@@ -291,14 +291,15 @@ cargar()
     //evento click sobre la imagen
     function addEventClick($element){
         $element.addEventListener('click', (event) => {
-            showModal()
+            //llamo a la funcion para  mostrar el modal y le envió el elemento html
+            showModal($element)
         })
     }
 
-    function renderMovieList(list, $container){
+    function renderMovieList(list, $container, category){
         $container.children[0].remove();
         list.forEach( (movie) => {
-           const HTMLString =  videoItemTemplate(movie);
+           const HTMLString =  videoItemTemplate(movie, category);
            const movieElement = createTemplate(HTMLString);
            $container.append(movieElement);
            //llamamos la función que captura el click de sobre la imagen
@@ -306,9 +307,9 @@ cargar()
         })
     }
 
-    renderMovieList(actionList.data.movies, $actionContainer);
-    renderMovieList(dramaList.data.movies, $dramaContainer);
-    renderMovieList(animationList.data.movies, $animationContainer);
+    renderMovieList(actionList.data.movies, $actionContainer, 'action');
+    renderMovieList(dramaList.data.movies, $dramaContainer, 'drama');
+    renderMovieList(animationList.data.movies, $animationContainer), 'animation';
 
 
   //definiendo las variables para llamar a los selectores
@@ -326,11 +327,18 @@ cargar()
   const modalTitle = $modal.querySelector("h1");
   const modalDescription = $modal.querySelector("p");
 
-  function showModal() {
+   //funcion para mostrar el modal y su información
+   //la funcion recibe el elemento html
+  function showModal($element) {
       //agregar una clase
       $overlay.classList.add('active');
       //agregando un estilo 
       $modal.style.animation = 'modalIn .8s forwards';
+      //recibo el dataser id
+      const id = $element.dataset.id;
+      const category = $element.dataset.category;
+      
+
   }
 
   $hideModal.addEventListener('click', hideModal);

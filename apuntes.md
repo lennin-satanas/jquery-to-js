@@ -242,4 +242,16 @@ const {
 const response = await fetch(`api_url`);
 const pelis = response.data.movies;
 
+Dataset
+Dataset permite acceder a un objeto con todos los atributos data de un elemento DOM.
+
+<div id="element" data-id="10" data-category="action">
+</div>
+const $element = document.getElementById("element");
+
+//guarda el valor de data-id
+const id = $element.dataset.id;
+//guarda el valor de data-category
+const category = $element.dataset.category;
+
 
