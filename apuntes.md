@@ -279,3 +279,147 @@ Se puede lanzar un error con throw.
 throw new Error('No se encontró ningún resultado');
 
 
+
+
+
+
+
+//console.log('hola mundo 1');
+//creando una promesa
+
+/*
+const getUserAll = new Promise(function(todoBien, todoMal){
+
+    //simulando la espera con un setTimeout
+    //recibe dos parametros una función y el tiempo de ejecución
+    setTimeout(function(){
+      //todoMal('fallo se acabo el tiempo 5000');
+      todoBien('bien se acabo el tiempo 5000');
+    },5000)
+
+})
+
+const getUser = new Promise(function(todoBien, todoMal){
+
+    //simulando la espera con un setTimeout
+    //recibe dos parametros una función y el tiempo de ejecución
+    setTimeout(function(){
+      //todoMal('fallo se acabo el tiempo 3000');
+      todoBien('bien se acabo el tiempo 3000');
+    },3000)
+
+})
+*/
+//consumiendo una promesa
+/*
+getUser
+    .then(function(){
+        console.log('todo esta bien en este sw')
+    })
+    .catch(function(mensaje){
+        console.log(mensaje)
+    })
+*/
+
+//espera a que se ejecuten las dos
+/*
+Promise.all([
+    getUser,
+    getUserAll,
+])
+.then(function(mes){
+    console.log(mes)
+})
+.catch(function(message){
+    console.log(message)
+})
+*/
+//cuando falla solo envia un mensaje
+//cuando es un exito retorna todos los mensajes
+
+//carrera de promesa
+/*
+Promise.race([
+    getUser,
+    getUserAll,
+])
+.then(function(mes){
+    console.log(mes)
+})
+.catch(function(message){
+    console.log(message)
+})
+
+*/
+//tutorial de ajax en jquery y javascript
+//haciendo uso de ajax
+/*
+$.ajax('https://randomuser.me/api/xxx',{
+    method: 'GET',
+    success: function(data){
+        console.log(data)
+    },
+    error: function(error){
+        console.log(error)
+    }
+})
+*/
+//ahora con vanilla js
+/*
+fetch('https://randomuser.me/api/xxx')
+    .then(function(response){
+        console.log(response)
+        return response.json()
+    })
+    .then(function(user){
+        console.log('user', user.results[0].name.first)
+    })
+    .catch(function(){
+        console.log('algo fallo')
+    });
+
+*/
+//funciones asincronas
+
+//declarando una funcion asincrona
+
+/*
+async function cargar(){
+    //esperar las peticiones de api  await
+}
+//llamando al a function
+cargar()
+
+//o la puedo envolver para que se auto ejecute
+*/
+/*
+(async function load(){
+    //await
+    const response = await fetch('https://yts.am/api/v2/list_movies.json?genre=action')
+    //pauso la aplicación hasta que se ejecute 
+    const data = await response.json()
+    //no se ejecuta hasta que se ejecuten las dos promesas anteriores
+    console.log(data)
+})()
+*/
+// ejemplo de utilización de aync await y promesas
+/*
+(async function load(){
+    //action
+    //terror
+    //animation
+    async function getData(url){
+        const response = await fetch(url);
+        const data = await response.json();
+        return data;
+    }
+    const actionList = await getData('https://yts.am/api/v2/list_movies.json?genre=action');
+    let terrorList;
+    getData('https://yts.am/api/v2/list_movies.json?genre=terro')
+        .then(function(data){
+            console.log('terrorList', data);
+            terrorList = data;
+        })
+    console.log('actionList', actionList);
+})()
+*/
