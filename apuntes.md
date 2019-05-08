@@ -264,6 +264,18 @@ Información referencial: https://developer.mozilla.org/es/docs/Web/JavaScript/R
 
 
 
+Manejo de errores
+El manejo de errores se hace con un bloque try/catch. Se intenta ejecutar un bloque de instrucciones (try) y se especifica una respuesta en caso suceda un error (catch).
 
+try {
+  //codigo a evaluar
+}
+catch(error) {
+  //código por si sucede un error
+  alert(error.message);
+}
+Se puede crear un error customizado con Error().
+Se puede lanzar un error con throw.
+throw new Error('No se encontró ningún resultado');
 
 
