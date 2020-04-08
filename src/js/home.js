@@ -27,7 +27,8 @@
     }
   }
   //BASE_API esta en mayusculas porque es una constante nunca va a variar
-  const BASE_API = 'https://yts.am/api/v2/'
+  // const BASE_API = 'https://yts.am/api/v2/'
+  const BASE_API = 'https://yts.mx/api/v2/'  
   //creando un template
   function featuringTemplate(peli) {
     return(  
