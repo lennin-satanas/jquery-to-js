@@ -9,7 +9,7 @@ _Descarga los archivos_
 
 ## Despliegue 📦
 - Ejecutar el archivo index.html
-- https://lenninibarrragonzalez.github.io/TitaMedia/
+- https://lenninibarrragonzalez.github.io/jquery-to-js/
 
 
 ## Tecnlogias 🔧
@@ -24,5 +24,5 @@ _Descarga los archivos_
 ## Licencia 📄
 Este proyecto está bajo la Licencia MIT - mira el archivo [LICENSE](https://wikis.fdi.ucm.es/ELP/Licencia_MIT) para detalles
 
-![alt text](https://lenninibarrragonzalez.github.io/jquery-to-js/)
+![alt text](https://github.com/lenninIbarrraGonzalez/jquery-to-js/blob/gh-pages/imagen.png)
 
